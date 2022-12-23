@@ -23,7 +23,7 @@ async function run() {
         // collections
         const servicesCollection = client.db("starFurniture").collection("services");
 
-        app.get('/services', async(req , res)=>{
+        app.get('/services', async (req, res) => {
 
             const filter = {};
             const result = await servicesCollection.find(filter).toArray();
@@ -31,12 +31,49 @@ async function run() {
 
         });
 
-        app.post('/services', async(req , res)=>{
+        app.get('/services/:id', async (req, res) => {
+
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const result = await servicesCollection.findOne(filter);
+            res.send(result);
+
+        });
+
+        app.patch('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const title = req.body.title;
+            const image = req.body.image;
+            const price = req.body.price;
+            const description = req.body.description;
+            const query = { _id: ObjectId(id) };
+            const updatedDoc = {
+                $set: {
+                    title,
+                    image,
+                    price,
+                    description
+                }
+            }
+
+            const result = await servicesCollection.updateOne(query, updatedDoc);
+            res.send(result);
+
+        });
+
+        app.post('/services', async (req, res) => {
             const service = req.body;
             const result = await servicesCollection.insertOne(service);
             res.send(result);
         });
-        
+
+        app.delete('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await servicesCollection.deleteOne(query);
+            res.send(result);
+        });
+
 
 
     }
