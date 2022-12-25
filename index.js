@@ -22,6 +22,7 @@ async function run() {
     try {
         // collections
         const servicesCollection = client.db("starFurniture").collection("services");
+        const commentsCollection = client.db("starFurniture").collection("comments");
 
         app.get('/services', async (req, res) => {
 
@@ -71,6 +72,13 @@ async function run() {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await servicesCollection.deleteOne(query);
+            res.send(result);
+        });
+
+
+        app.get('/comments' , async (req , res)=>{
+            const filter = {};
+            const result = await commentsCollection.find(filter).toArray();
             res.send(result);
         });
 
