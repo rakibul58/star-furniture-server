@@ -1,6 +1,6 @@
 # Star Furniture
 
-[Live Site Link](https://star-furniture-server.vercel.app/)
+[Live Site](https://star-furniture-server.vercel.app/)
 
 A Node.js/Express.js backend server for the Star Furniture e-commerce platform that handles furniture services and user comments.
 
