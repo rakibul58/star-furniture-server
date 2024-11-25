@@ -43,7 +43,7 @@ PORT=5000 (optional, defaults to 5000)
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/star-furniture-server.git
+git clone https://github.com/rakibul58/star-furniture-server.git
 cd star-furniture-server
 ```
 
